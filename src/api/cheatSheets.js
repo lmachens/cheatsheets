@@ -1,27 +1,17 @@
-const cheatSheets = [
-  {
-    category: "css",
-    title: "Positions",
-    introduction: "Positions are good, positions are fine.",
-    code: `display: position;
-z-index: 1;`
-  },
-  {
-    category: "css",
-    title: "Flexbox",
-    introduction: "Flex is best!",
-    code: `display: flex;
-align-items: center;`
-  },
-  {
-    category: "js",
-    title: "fetch",
-    introduction: "fetch an api",
-    code: `fetch(url).then(response => response.json());`
-  }
-];
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
-export function getGroupedCheatSheets() {
+if (!REACT_APP_API_URL) {
+  throw Error("Please set process.env.REACT_APP_API_URL");
+}
+
+function fetchCheatSheets() {
+  return fetch(`${REACT_APP_API_URL}/cheatSheets`).then(response =>
+    response.json()
+  );
+}
+
+export async function getGroupedCheatSheets() {
+  const cheatSheets = await fetchCheatSheets();
   const groups = cheatSheets.reduce((acc, current) => {
     acc[current.category] = [current, ...(acc[current.category] || [])];
     return acc;

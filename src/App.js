@@ -37,8 +37,12 @@ const Hr = styled.hr`
 `;
 
 function App() {
+  const [groupedCheatSheets, setGroupedCheatSheets] = React.useState([]);
   const [activeCheatSheet, setActiveCheatSheet] = React.useState(null);
-  const groupedCheatSheets = getGroupedCheatSheets();
+
+  React.useEffect(() => {
+    getGroupedCheatSheets().then(setGroupedCheatSheets);
+  }, []);
 
   return (
     <Container>
