@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 const StyledUl = styled.ul`
   margin: ${props => (props.indent ? "0 0 0 20px" : 0)};
   padding: 0;
+  text-transform: ${props => (props.indent ? "initial" : "uppercase")};
 `;
 
 export default function List({ children, indent }) {

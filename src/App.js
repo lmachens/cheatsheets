@@ -2,6 +2,9 @@ import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import Logo from "./components/Logo";
+import List from "./components/List";
+import ListItem from "./components/ListItem";
+import { getGroupedCheatSheets } from "./api/cheatSheets";
 
 const Container = styled.div`
   display: flex;
@@ -33,17 +36,44 @@ const Hr = styled.hr`
 `;
 
 function App() {
+  const [activeCheatSheet, setActiveCheatSheet] = React.useState(null);
+  const groupedCheatSheets = getGroupedCheatSheets();
+
   return (
     <Container>
       <GlobalStyles />
       <Navigation>
         <Logo />
         <Hr />
-        <Aside>Aside</Aside>
+        <Aside>
+          <List>
+            {Object.entries(groupedCheatSheets).map(([key, items]) => (
+              <ListItem
+                key={key}
+                active={activeCheatSheet && activeCheatSheet.category === key}
+                details={
+                  <List indent>
+                    {items.map(item => (
+                      <ListItem
+                        key={item.title}
+                        onClick={() => setActiveCheatSheet(item)}
+                      >
+                        {item.title}
+                      </ListItem>
+                    ))}
+                  </List>
+                }
+                onClick={() => setActiveCheatSheet(items[0])}
+              >
+                {key}
+              </ListItem>
+            ))}
+          </List>
+        </Aside>
         <Hr />
         Built with ❤️
       </Navigation>
-      <Main>Main</Main>
+      <Main>{activeCheatSheet && activeCheatSheet.title}</Main>
     </Container>
   );
 }
