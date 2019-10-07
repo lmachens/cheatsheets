@@ -3,27 +3,21 @@ const cheatSheets = [
     category: "css",
     title: "Positions",
     introduction: "Positions are good, positions are fine.",
-    code: `
-    display: position;
-    z-index: 1;
-    `
+    code: `display: position;
+z-index: 1;`
   },
   {
     category: "css",
     title: "Flexbox",
     introduction: "Flex is best!",
-    code: `
-    display: flex;
-    align-items: center;
-    `
+    code: `display: flex;
+align-items: center;`
   },
   {
     category: "js",
     title: "fetch",
     introduction: "fetch an api",
-    code: `
-    fetch(url).then(response => response.json());
-    `
+    code: `fetch(url).then(response => response.json());`
   }
 ];
 

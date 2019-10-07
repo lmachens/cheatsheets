@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 import List from "./components/List";
 import ListItem from "./components/ListItem";
 import { getGroupedCheatSheets } from "./api/cheatSheets";
+import Section from "./components/Section";
 
 const Container = styled.div`
   display: flex;
@@ -73,7 +74,7 @@ function App() {
         <Hr />
         Built with ❤️
       </Navigation>
-      <Main>{activeCheatSheet && activeCheatSheet.title}</Main>
+      <Main>{activeCheatSheet && <Section {...activeCheatSheet} />}</Main>
     </Container>
   );
 }
