@@ -38,6 +38,7 @@
     "@storybook/addons": "^5.2.3",
     "@storybook/react": "^5.2.3",
     "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.16.0",
     "prettier": "^1.18.2"
   }
 }
